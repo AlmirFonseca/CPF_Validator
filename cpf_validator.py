@@ -14,6 +14,9 @@ class CPFValidator:
             cpf (str): CPF a ser validado no formato XXX.XXX.XXX-XX.
         """
 
+        if not self._check_format(cpf):
+            raise ValueError("Formato de CPF inválido")
+        
         self.cpf = self._clean_cpf(cpf)
 
     def _clean_cpf(self, cpf):
@@ -33,6 +36,17 @@ class CPFValidator:
             bool: True se a sequência é inválida, False caso contrário.
         """
         return self.cpf == self.cpf[0] * len(self.cpf)
+    
+    def _check_format(self, cpf):
+        """ Verifica se o CPF fornecido está no formato XXX.XXX.XXX-XX. 
+        Args:
+            cpf (str): CPF a ser verificado.
+        Returns:
+            bool: True se o CPF está no formato XXX.XXX.XXX-XX, False caso contrário.
+        """
+        return re.match(r"^\d{3}\.\d{3}\.\d{3}-\d{2}$", cpf) is not None
+    
+
 
     def _calculate_digit(self, cpf_base):
         """ Calcula um dígito verificador do CPF. 
