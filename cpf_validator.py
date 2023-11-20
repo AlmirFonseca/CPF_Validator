@@ -1,6 +1,12 @@
 import re
 
 class CPFValidator:
+    """ Classe para validação de CPF.
+    
+    Attributes:
+        cpf (str): CPF a ser validado no formato XXX.XXX.XXX-XX.
+    """
+    
     def __init__(self, cpf):
         """ Inicializa o validador de CPF com o CPF fornecido.
         
